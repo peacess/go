@@ -6,6 +6,14 @@ import (
 	"testing"
 )
 
+func TestSameEqual(t *testing.T) {
+	a1 := 10
+	a2 := 10
+	p1 := &a1
+	p2 := &a2
+	assert.Equal(t,p1,p2) //地址不同，但值相等，所以成立
+	assert.NotSame(t,p1,p2) //比较指针是否相等，所以成立
+}
 
 func TestFat(t *testing.T) {
 	var fat1 interface{} = nil // {interface{}} nil
