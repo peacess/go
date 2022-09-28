@@ -75,5 +75,8 @@ func TestStringBytes(t *testing.T) {
 			//{0xc000024c28}:{0xc000024c30}:{0xc000024c38}
 		}
 	}
+	//总结
+	//[]byte to string 使用：　bs := *(*string)(unsafe.Pointer(&bytes))
+	//string to []byte 使用：　sb = unsafe.Slice((*byte)(unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&str)).Data)), len(str))
 
 }
