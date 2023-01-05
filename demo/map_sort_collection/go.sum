@@ -1,0 +1,16 @@
+github.com/google/btree v1.1.2 h1:xf4v41cLI2Z6FxbKm+8Bu+m8ifhj15JuZ9sa0jZCMUU=
+github.com/google/btree v1.1.2/go.mod h1:qOPhT0dTNdNzV6Z/lhRX0YXUafgPLFUh+gZMl761Gm4=
+github.com/petar/GoLLRB v0.0.0-20210522233825-ae3b015fd3e9 h1:1/WtZae0yGtPq+TI6+Tv1WTxkukpXeMlviSxvL7SRgk=
+github.com/petar/GoLLRB v0.0.0-20210522233825-ae3b015fd3e9/go.mod h1:x3N5drFsm2uilKKuuYo6LdyD8vZAW55sH/9w+pbo1sw=
+github.com/segmentio/fasthash v1.0.3 h1:EI9+KE1EwvMLBWwjpRDc+fEM+prwxDYbslddQGtrmhM=
+github.com/segmentio/fasthash v1.0.3/go.mod h1:waKX8l2N8yckOgmSsXJi7x1ZfdKZ4x7KRMzBtS3oedY=
+github.com/tidwall/btree v1.6.0 h1:LDZfKfQIBHGHWSwckhXI0RPSXzlo+KYdjK7FWSqOzzg=
+github.com/tidwall/btree v1.6.0/go.mod h1:twD9XRA5jj9VUQGELzDO4HPQTNJsoWWfYEL+EUQ2cKY=
+github.com/wzshiming/llrb v0.2.1 h1:+T/PE0lrrB2LE8487fYcRlkZct5E9L/Gi8mf6mUtEK8=
+github.com/wzshiming/llrb v0.2.1/go.mod h1:xlAM5hpCBIT3dTy/6CbNPxHMR1JfIMSyk2lV68wz3Yw=
+github.com/zeroflucs-given/generics v0.0.0-20221011064628-8b75417ecdf4 h1:oJ7IbKbyxUmk7DWekqgc4KW3EO40XPspZCZuiGG3nN8=
+github.com/zeroflucs-given/generics v0.0.0-20221011064628-8b75417ecdf4/go.mod h1:0dEb0xT/fFoC/HZZCoa5c8JDrv1JdwGQiZPMK3sXQFY=
+github.com/zyedidia/generic v1.2.0 h1:FqmwImOpNLlru0UVbamNk5omCHWmXcs+om4+Dh6KLC8=
+github.com/zyedidia/generic v1.2.0/go.mod h1:ly2RBz4mnz1yeuVbQA/VFwGjK3mnHGRj1JuoG336Bis=
+golang.org/x/exp v0.0.0-20221109205753-fc8884afc316 h1:FedCSp0+vayF11p3wAQndIgu+JTcW2nLp5M+HSefjlM=
+golang.org/x/exp v0.0.0-20221109205753-fc8884afc316/go.mod h1:CxIveKay+FTh1D0yPZemJVgC/95VzuuOLq5Qi4xnoYc=
