@@ -1,6 +1,7 @@
-go 1.19
+go 1.20
 
 use (
 	.
+	./demo/build_go_rocksdb
 	./demo/map_sort_collection
 )
