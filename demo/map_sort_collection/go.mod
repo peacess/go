@@ -1,6 +1,6 @@
 module github.com/peacess/go/demo/map_sort_collection
 
-go 1.19
+go 1.20
 
 require (
 	github.com/google/btree v1.1.2 // indirect
