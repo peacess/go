@@ -5,14 +5,17 @@ go test -bench . -cpu=1
 goos: linux  
 goarch: amd64  
 pkg: github.com/peacess/go/demo/lang_bench  
-cpu: AMD Ryzen 9 3900X 12-Core Processor              
-BenchmarkNoFun                  741094232                1.549 ns/op  
-BenchmarkClosure                642063650                1.664 ns/op  
-BenchmarkClosureNoParameter     798082786                1.523 ns/op  
-BenchmarkCall                   460731896                2.605 ns/op  
-BenchmarkFuncPoint              457155902                2.630 ns/op  
-BenchmarkInterface              503673919                2.359 ns/op  
-BenchmarkReflect                 3616756               330.8 ns/op  
+cpu: AMD Ryzen 9 3900X 12-Core Processor    
+
+| way                         | times     | ns/op       |
+|:----------------------------|:----------|:------------|  
+| BenchmarkNoFun              | 741094232 | 1.549 ns/op | 
+| BenchmarkClosure            | 642063650 | 1.664 ns/op | 
+| BenchmarkClosureNoParameter | 798082786 | 1.523 ns/op | 
+| BenchmarkCall               | 460731896 | 2.605 ns/op | 
+| BenchmarkFuncPoint          | 457155902 | 2.630 ns/op | 
+| BenchmarkInterface          | 503673919 | 2.359 ns/op | 
+| BenchmarkReflect            | 3616756   | 330.8 ns/op | 
 PASS  
 ok      github.com/peacess/go/demo/lang_bench   11.882s  
 
