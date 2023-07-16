@@ -5,4 +5,7 @@ use (
 	./demo/build_go_rocksdb
 	./demo/map_sort_collection
 	./demo/lang_bench
+
+	./lib/gid
+	./lib/fjson
 )
