@@ -1,11 +1,11 @@
 module github.com/peacess/go
 
-go 1.20
+go 1.21
 
 require (
 	github.com/modern-go/reflect2 v1.0.2
-	github.com/stretchr/testify v1.8.4
-	golang.org/x/crypto v0.12.0
+	github.com/stretchr/testify v1.8.3
+	golang.org/x/crypto v0.0.0-20210616213533-5ff15b29337e
 )
 
 require (
