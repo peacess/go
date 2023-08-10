@@ -3,9 +3,9 @@ module github.com/peacess/go
 go 1.20
 
 require (
-	github.com/modern-go/reflect2 v1.0.1
-	github.com/stretchr/testify v1.8.1
-	golang.org/x/crypto v0.0.0-20210616213533-5ff15b29337e
+	github.com/modern-go/reflect2 v1.0.2
+	github.com/stretchr/testify v1.8.4
+	golang.org/x/crypto v0.12.0
 )
 
 require (
