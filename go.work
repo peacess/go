@@ -3,9 +3,9 @@ go 1.21
 use (
 	.
 	./demo/build_go_rocksdb
-	./demo/map_sort_collection
 	./demo/lang_bench
+	./demo/map_sort_collection
+	./lib/fjson
 
 	./lib/gid
-	./lib/fjson
 )
