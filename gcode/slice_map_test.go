@@ -1,8 +1,9 @@
 package gcode
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSliceClone(t *testing.T) {
@@ -47,4 +48,23 @@ func TestSliceMergeClone(t *testing.T) {
 	}
 	assert.Equal(t, data1, merge[0:len(data1)])
 	assert.Equal(t, data2, merge[len(data1):])
+}
+
+func TestClean(t *testing.T) {
+
+	// clear just zero value of slice, but remove for map
+	ass := assert.New(t)
+	a := []int{1, 2}
+	m := map[int]int{1: 2, 3: 4}
+
+	clear(a)
+	ass.Equal(len(a), 2)
+	clear(m)
+	ass.Equal(len(m), 0)
+
+	as := a[:]
+	ass.Equal(len(as), 2)
+	clear(as)
+	ass.Equal(len(as), 2)
+
 }
