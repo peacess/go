@@ -1,6 +1,6 @@
 module github.com/peacess/go
 
-go 1.21
+go 1.22
 
 require (
 	github.com/modern-go/reflect2 v1.0.2
