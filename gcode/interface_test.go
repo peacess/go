@@ -109,7 +109,7 @@ func (c *Data) SetName(name string) {
 }
 
 func TestData(t *testing.T) {
-	d := Data{SubData:SubData{tName: "123"},C:10}
+	d := Data{SubData: SubData{tName: "123"}, C: 10}
 	var inter Inter = &d
 	var inter2 Inter = &d
 
@@ -139,7 +139,6 @@ func TestData(t *testing.T) {
 	d.Name()
 	inter.Name()
 	inter.SetName("")
-
 
 	_ = i1
 	_ = i2
