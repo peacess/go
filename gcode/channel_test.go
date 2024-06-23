@@ -73,7 +73,15 @@ func TestStatusChan(t *testing.T) {
 	c <- 1
 	assert.Equal(t, 1, len(c))
 	assert.Equal(t, 10, cap(c))
+	<-c
+	assert.Equal(t, 0, len(c))
+	assert.Equal(t, 10, cap(c))
+
+	c <- 1
 	close(c)
 	assert.Equal(t, 1, len(c))
+	assert.Equal(t, 10, cap(c))
+	<-c
+	assert.Equal(t, 0, len(c))
 	assert.Equal(t, 10, cap(c))
 }
