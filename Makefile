@@ -1,4 +1,4 @@
-.PHONY: clean upgrade format test build
+.PHONY: clean upgrade format test build upgrade
 
 go  := ${shell which go}
 

@@ -2,28 +2,67 @@ package gcode
 
 import (
 	"encoding/json"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 type JsonData struct {
-	name string
+	Name string `json:"name"`
 }
 
+// 只有指针实现， 当JsonData不是指针时，并没有实现MarshalJSON
+// 也就是：
+// json.Marshal(d)时，如果d不是指针时，就不会调用当前实现的方法，而是json库自己的默认实现
 func (c *JsonData) MarshalJSON() (bytes []byte, err error) {
-	return json.Marshal(c.name)
+	return json.Marshal(c.Name)
 }
 
 func (c *JsonData) UnmarshalJSON(bytes []byte) error {
-	return json.Unmarshal(bytes, &c.name)
+	return json.Unmarshal(bytes, &c.Name)
 }
 
 func TestJsonData(t *testing.T) {
-	d := JsonData{name: "test"}
-	bytes, err := json.Marshal(d)
-	assert.Equal(t, nil, err)
-	var d2 JsonData
-	err = json.Unmarshal(bytes, &d2)
-	assert.Equal(t, nil, err) //has error，为什么？
-	assert.Equal(t, d, d2)    //not eq， 有两种方法，可以更正结果，一种是增加一个符号“&”,一种是删除一个符号“*”
+	{
+		d := JsonData{Name: "test"}
+		// 调用到自己实现的“MarshalJSON”
+		// the bytes is "test"
+		bytes, _ := json.Marshal(&d)
+		// 不会调用到自己实现的“MarshalJSON”
+		// the bytes is "{"name":"test"}"
+		bytes2, _ := json.Marshal(d)
+		assert.NotEqual(t, len(bytes), len(bytes2))
+	}
+
+	{
+		d := JsonData{Name: "test"}
+
+		bytes, err := json.Marshal(d)
+		assert.Equal(t, nil, err)
+
+		var d2 JsonData
+		err = json.Unmarshal(bytes, &d2)
+		assert.NotEqual(t, nil, err) //json: cannot unmarshal object into Go value of type string
+		println(err.Error())
+		// the parameter d2 is not a pointer
+		err = json.Unmarshal(bytes, d2)
+		assert.NotEqual(t, nil, err) //json: Unmarshal(non-pointer gcode.JsonData)
+		println(err.Error())
+	}
+	{
+		d := JsonData{Name: "test"}
+		bytes, err := json.Marshal(&d)
+		assert.Equal(t, nil, err)
+
+		var d2 JsonData
+		err = json.Unmarshal(bytes, &d2)
+		assert.Equal(t, nil, err)
+		assert.Equal(t, d, d2)
+
+		// the parameter d2 is not a pointer
+		err = json.Unmarshal(bytes, d2)
+		assert.NotEqual(t, nil, err) //json: Unmarshal(non-pointer gcode.JsonData)
+		println(err.Error())
+	}
+
 }

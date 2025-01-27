@@ -2,11 +2,12 @@ package gcode
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"reflect"
 	"testing"
 	"unicode/utf8"
 	"unsafe"
+
+	"github.com/stretchr/testify/assert"
 )
 
 //赋值是编辑语言的基础，理解赋值就拿到打开这门语言的钥匙。
@@ -140,7 +141,8 @@ func TestString(t *testing.T) {
 	//这里打印出来的是int32类型，也就是rune类型
 
 	//len(str)计算的是byte，不是字符个数，计算字符个数使用：
-	assert.False(t, 2 != len(str))
+	assert.True(t, 2 != len(str))
+	assert.Equal(t, 6, len(str))
 	assert.Equal(t, 2, len([]rune(str)))
 	assert.Equal(t, 2, utf8.RuneCountInString(str)) //建议使用这个方法
 	//问题：如果要使用byte方式遍历 string，怎么处理
