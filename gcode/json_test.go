@@ -43,11 +43,9 @@ func TestJsonData(t *testing.T) {
 		var d2 JsonData
 		err = json.Unmarshal(bytes, &d2)
 		assert.NotEqual(t, nil, err) //json: cannot unmarshal object into Go value of type string
-		println(err.Error())
 		// the parameter d2 is not a pointer
 		err = json.Unmarshal(bytes, d2)
 		assert.NotEqual(t, nil, err) //json: Unmarshal(non-pointer gcode.JsonData)
-		println(err.Error())
 	}
 	{
 		d := JsonData{Name: "test"}
@@ -62,7 +60,49 @@ func TestJsonData(t *testing.T) {
 		// the parameter d2 is not a pointer
 		err = json.Unmarshal(bytes, d2)
 		assert.NotEqual(t, nil, err) //json: Unmarshal(non-pointer gcode.JsonData)
-		println(err.Error())
+	}
+
+}
+
+type JsonData2 struct {
+	Name string `json:"name"`
+}
+
+// non-pointer and pointer can call this method(both make copy)
+func (c JsonData2) MarshalJSON() (bytes []byte, err error) {
+	return json.Marshal(c.Name)
+}
+
+// non-pointer and pointer can call this method(both make copy)
+// so UnmarshalJSON can't return value
+func (c JsonData2) UnmarshalJSON(bytes []byte) error {
+	return json.Unmarshal(bytes, &c.Name)
+}
+
+func TestJsonData2(t *testing.T) {
+	{
+		d := JsonData2{Name: "test"}
+		// 调用到自己实现的“MarshalJSON”
+		// the bytes is "test"
+		bytes, _ := json.Marshal(&d)
+		// 调用到自己实现的“MarshalJSON”
+		// the bytes is "test"
+		bytes2, _ := json.Marshal(d)
+		assert.Equal(t, string(bytes), string(bytes2))
+	}
+
+	{
+		d := JsonData2{Name: "test"}
+
+		bytes, err := json.Marshal(d)
+		assert.Equal(t, nil, err)
+
+		var d2 JsonData2
+		err = json.Unmarshal(bytes, &d2)
+		assert.Equal(t, nil, err)
+		assert.NotEqual(t, d.Name, d2.Name)
+		err = json.Unmarshal(bytes, d2)
+		assert.NotEqual(t, nil, err) ////json: Unmarshal(non-pointer gcode.JsonData)
 	}
 
 }
