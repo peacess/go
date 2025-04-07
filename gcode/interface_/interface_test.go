@@ -1,10 +1,11 @@
-package gcode
+package interface_
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"testing"
 	"unsafe"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSameEqual(t *testing.T) {
