@@ -5,7 +5,7 @@ go 1.24.2
 require (
 	github.com/google/btree v1.1.3
 	github.com/tidwall/btree v1.7.0
-	github.com/wzshiming/llrb v1.0.1
+	github.com/wzshiming/llrb v0.2.2
 	github.com/zyedidia/generic v1.2.1
 )
 
