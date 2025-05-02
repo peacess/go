@@ -287,7 +287,7 @@ func TestLoop(t *testing.T) {
 		}
 		//上面这个循环的性能问题在那里？
 		//下面是另外的实现
-		for i, _ := range users {
+		for i := range len(users) {
 			users[i].Name = "test2" //这里能修改到 users中的数据吗？,可以，users[i]这个操作不会产生copy，取下标也不是一个赋值
 		}
 		//注：在遍历时，一定要注意 “赋值”带来的副作用，如要struct比较大，是有性能问题的
@@ -299,7 +299,7 @@ func TestLoop(t *testing.T) {
 		}
 		//上面这个循环的性能问题在那里？, 这里产生了一个 int 类型的赋值，它对性能的影响非常小
 		//下面是另外的实现
-		for i, _ := range users2 {
+		for i := range len(users2) {
 			users2[i].Name = "test2" //这里能修改到 users中的数据吗？ 可以
 		}
 
@@ -320,18 +320,16 @@ func TestStringBytes(t *testing.T) {
 	assert := assert.New(t)
 	//不复制内存，把string转换为[]byte
 	String2Bytes := func(s string) []byte {
-		stringHeader := (*reflect.StringHeader)(unsafe.Pointer(&s))
-		bytes := reflect.SliceHeader{
-			Data: stringHeader.Data,
-			Len:  stringHeader.Len,
-			Cap:  stringHeader.Len,
-		}
-		return *(*[]byte)(unsafe.Pointer(&bytes))
+		l := len(s)
+		p := unsafe.StringData(s)
+		return unsafe.Slice(p, l)
 	}
 
 	//不复制内存，把[]byte转换为string
 	Bytes2String := func(bytes []byte) string {
-		return *(*string)(unsafe.Pointer(&bytes))
+		l := len(bytes)
+		p := unsafe.SliceData(bytes)
+		return unsafe.String(p, l)
 	}
 
 	str := "66"

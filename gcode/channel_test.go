@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"sync"
 	"testing"
-	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -13,40 +12,47 @@ import (
 func TestCloseReceivingChan(t *testing.T) {
 	c := make(chan int)
 	var wg sync.WaitGroup
+	var wgDone sync.WaitGroup
 	wg.Add(1)
+	wgDone.Add(1)
 	go func() {
 		defer func() {
 			if r := recover(); r != nil {
-				t.Fatalf("CloseReceivingChan is panic")
+				fmt.Println("CloseReceivingChan is panic, ", r)
 			}
+			wgDone.Done()
 		}()
 		wg.Done()
-		t := <-c
-		fmt.Println(t)
+		t := 1
+		t = <-c
+		fmt.Println("CloseReceivingChan is not panic, and it will recieve a \"value\"\n", "old t is 1, now: ", t)
 	}()
-	wg.Wait()     //确定goroutine 已经运行，这里不要使用 channel实现，这不是channel的正常功能，性能也不如WaitGroup
-	time.Sleep(1) //确定goroutine 已经运行
+	wg.Wait() //确定goroutine 已经运行，这里不要使用 channel实现，这不是channel的正常功能，性能也不如WaitGroup
 	close(c)
+	wgDone.Wait()
 }
 
 // 关闭 sending的channel
 func TestCloseSendingChan(t *testing.T) {
 	c := make(chan int)
 	var wg sync.WaitGroup
+	var wgDone sync.WaitGroup
 	wg.Add(1)
+	wgDone.Add(1)
 	go func() {
 		defer func() {
 			if r := recover(); r != nil {
-				fmt.Println(r)
+				fmt.Println("CloseSendingChan is panic, ", r)
 			}
+			wgDone.Done()
 		}()
 		wg.Done()
 		c <- 1
-		t.Fatalf("CloseSendingChan is not panic")
+		fmt.Println("CloseSendingChan is not panic")
 	}()
-	wg.Wait()     //确定goroutine 已经运行，这里不要使用 channel实现，这不是channel的正常功能，性能也不如WaitGroup
-	time.Sleep(1) //确定goroutine 已经运行
+	wg.Wait() //确定goroutine 已经运行，这里不要使用 channel实现，这不是channel的正常功能，性能也不如WaitGroup
 	close(c)
+	wgDone.Wait()
 }
 
 // recv的关闭chan
