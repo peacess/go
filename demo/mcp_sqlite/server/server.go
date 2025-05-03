@@ -29,5 +29,6 @@ func main() {
 		println("server started")
 		<-interrupt
 	}
+	serive.Uninit()
 	println("server exit")
 }
