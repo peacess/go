@@ -68,3 +68,24 @@ func TestClean(t *testing.T) {
 	ass.Equal(len(as), 2)
 
 }
+
+func TestMapAdd(t *testing.T) {
+
+	ass := assert.New(t)
+	{
+		m := map[int]int{}
+		m[1] += 1
+		ass.Equal(len(m), 1)
+		ass.Equal(m[1], 1)
+		m[1] += 1
+		ass.Equal(m[1], 2)
+	}
+	{
+		m := map[int]int{}
+		m[1]++
+		ass.Equal(len(m), 1)
+		ass.Equal(m[1], 1)
+		m[1] += 1
+		ass.Equal(m[1], 2)
+	}
+}
